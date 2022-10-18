@@ -1,0 +1,116 @@
+.contenedor{
+    height:auto;
+    position: absolute;
+    top: 12%;
+    width: 100%;
+    text-align: center;
+}
+
+.row{
+    margin: 0;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+.row .form-group{
+    margin: 0;
+    padding-left: 0 !important;
+    padding-right: 10 !important;
+}
+
+
+.divRegAsis{
+    height: auto;
+    
+    justify-content: center;
+    align-items: center;
+}
+
+.divHistAsis{
+    height: auto;
+}
+
+.divRegAsis .Title{
+    font-family: sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 7%;
+    text-align: left;
+    color: rgb(100, 100, 100);
+}
+
+.divHistAsis .Title{
+    font-family: sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 7%;
+    text-align: left;
+    color: rgb(100, 100, 100);
+}
+
+.TitleHist{
+    font-family: sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 7%;
+    text-align: left;
+    color: rgb(100, 100, 100);
+}
+
+.divFormRegAsis{
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.formRegAsis{
+    text-align: left;
+}
+
+.formModAsis{
+    text-align: left;
+    margin: 0 20px;
+}
+
+.table-histAsis{
+    background-color: #49AC6B;
+    color: white;
+}
+
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #23703e;
+    text-align: center !important;
+}
+
+.table tbody td {
+    text-align: center !important;
+}
+
+.divModalidadEE{
+    font-size: 12px;
+    display: block;
+    text-align: right;
+}
+
+.divModalidadEEMod{
+    font-size: 12px;
+    display: block;
+    text-align: right;
+}
+
+@media (max-width:400px){
+    .contenedor{
+        top: 19%;
+    }
+}
+
+.alertError{
+    text-align: left;
+    color: rgb(199, 57, 57);
+    display: block;
+}
+
+.labelobligarotio{
+    color: rgb(199, 57, 57);
+    display: inline;
+}

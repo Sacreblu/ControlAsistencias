@@ -1,0 +1,43 @@
+.header{
+    height: 55px;
+    background-color: rgb(4, 67, 110);
+}
+
+.User{
+    background-color: rgb(235, 235, 235);
+    float: right;
+    padding: 5px 10px;
+    border-bottom-left-radius: 4px;
+    font-weight: bold;
+}
+
+.imagen-header{
+    margin: 5px 10px;
+}
+
+.img-right{
+    float: right;
+}
+
+.menu{
+    background-color: rgb(240, 240, 240) !important;
+}
+
+.head{
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: 0 !important;
+}
+
+.logout{
+    cursor: pointer;
+}
+
+.divTitle{
+    color:white;
+    font-family: sans-serif;
+    font-size: 25px;
+    margin-left: 2%;
+    display: inline-block;
+    margin-top: 6.5px;
+}

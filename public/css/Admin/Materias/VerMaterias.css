@@ -1,0 +1,103 @@
+.contenedor{
+    height:auto;
+    position: absolute;
+    top: 25%;
+    width: 100%;
+    text-align: center;
+
+    padding: 0px 5%;
+}
+
+.div-buscar{
+    margin: 0px 30px 20px 30px !important;
+    text-align: right;
+}
+
+.input-busqueda{
+    font-size: 11px !important;
+    margin-right: 10px;
+    width: 350px !important;
+}
+
+.btn-buscar{
+    margin-right: 10px;
+}
+
+.form-buscar{
+    margin: 0 0 0 auto !important;
+    display: inline !important;
+}
+
+.check-buscar, .check-buscar label{
+    display: inline !important;
+}
+
+.check-buscar {
+    margin: 0 5px !important;
+}
+
+.div-opciones label{
+    margin-right: 10px;
+}
+
+.div-opciones select{
+    border:none;
+    border-bottom: black 1px solid;
+    border-radius: 0%;
+    width: 170px !important;
+    margin-right: 45px !important;
+}
+
+.opciones-btn{
+    text-align: right;
+    padding-right: 60px !important;
+}
+
+.opciones-form{
+    padding-left: 100px !important;
+}
+
+table thead{
+    text-align:center;
+    font-size: 13px;
+}
+
+.tablaMaterias{
+    font-size: 13px !important;
+    margin-bottom: 20px;
+}
+
+.btn-deshab{
+    color: white !important;
+    margin-left: 5px;
+}
+
+.btn-xs {
+    padding: 1px 5px !important;
+    font-size: 12px !important;
+    line-height: 1.5 !important;
+    border-radius: 3px !important;
+}
+
+.btn-right{
+    color: white !important;
+    margin-left: 5px;
+}
+
+.modal-dialog{
+    max-width: 850px !important;
+}
+
+.modal-body .tabs-container{
+    margin: 20px 40px !important;
+}
+
+.modal-body p{
+    margin: 0px !important;
+}
+
+.horarios{
+    padding-left: 15% !important;
+    padding-right: 15% !important;
+    display: flex;
+}
