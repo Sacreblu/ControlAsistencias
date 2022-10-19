@@ -26,7 +26,9 @@ class Asistencias extends Model
     public function HistorialAsistencia($idProf){
         $Asistencias = Asistencias::join('materias', 'asistencias.Materia', '=', 'materias.id')
                         ->join('programas_educativos', 'materias.ProgEducativo', '=', 'programas_educativos.id')
-                        ->select('asistencias.id', 'materias.ModalidadEE', 'Materia as idMateria', 'NombreEE', 'NRC', 'Bloque', 'Seccion', 'programas_educativos.Siglas as ProgEducativo', 'Modalidad', 'Plataforma', 'Aula', 'Fecha', 'Dia', 'HoraI', 'HoraF', 'Temas')
+                        ->select('asistencias.id', 'materias.ModalidadEE', 'Materia as idMateria', 'NombreEE', 'NRC', 'Bloque', 'Seccion', 
+                                        'programas_educativos.Siglas as ProgEducativo', 'Modalidad', 'Plataforma', 'Aula', 'Fecha', 'Dia', 
+                                        'HoraI', 'HoraF', 'Temas')
                         ->Where('asistencias.Profesor', '=', $idProf)
                         ->orderBy('Fecha', 'DESC')
                         ->orderBy('HoraI', 'ASC')
