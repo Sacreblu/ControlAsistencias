@@ -51,8 +51,10 @@ function IniciarSesion(){
 						$( "#Usuario" ).focus();	
 						if (resultado==0) {
 							alert("Usuario y/o Contraseña incorrectos");
+							//alert("Sin autenticar en servicio UV");
 						}else{
-							alert("Usuario y/o Contraseña incorrectos");
+							//alert("Usuario y/o Contraseña incorrectos");
+							alert("Sin autenticar en BD");
 						}
 					}
 				},

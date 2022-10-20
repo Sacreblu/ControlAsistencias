@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Materias extends Model
 {
+
     protected $fillable = [
         'id',
         'NombreEE',
@@ -20,14 +21,14 @@ class Materias extends Model
     ];
 
     public function ObtenerMateriasPorProfesor($idProf, $idFac){
-        $Periodo="";
+        $Periodo='Febrero - Julio';
         $mes = date("n");
 
-        if ($mes>=2 && $mes<=7) {
+        /*if ($mes>=2 && $mes<=7) {
             $Periodo="Febrero - Julio";
         }else{
             $Periodo="Agosto - Enero";
-        }
+        }*/
 
         $materias = Materias::join('programas_educativos', 'materias.ProgEducativo', '=', 'programas_educativos.id')
                         ->select('materias.id','NombreEE','NRC', 'Periodo','programas_educativos.Siglas as ProgEducativo', 'Seccion', 'Bloque', 'ModalidadEE')
@@ -122,7 +123,7 @@ class Materias extends Model
         return $materias;
     }
 
-    public function ValidarTraslapeProfesor($request){
+    public function ValidarTraslapeProfesor($request, $idFac){
         $HoraI = $request->get('HoraI');
         $Duracion = $request->get('Duracion');
         $HoraF = intval($HoraI)+intval($Duracion)-1;
@@ -133,15 +134,16 @@ class Materias extends Model
         
 
         $materias = Materias::join('materias_horarios', 'materias_horarios.Materia', '=', 'materias.id')
+                        ->join('programas_educativos', 'materias.ProgEducativo', '=', 'programas_educativos.id')
                         ->select('materias.id')
-                        ->Where([['HoraI', '<=', $HoraI], ['HoraF', '>=', $HoraI], ['Profesor', '=', $idProf], ['Dia', '=', $Dia]])
-                        ->orWhere([['HoraI', '<=', $HoraF], ['HoraF', '>=', $HoraF], ['Profesor', '=', $idProf], ['Dia', '=', $Dia]])
-                        ->orWhere([['HoraI', '>=', $HoraI], ['HoraF', '<=', $HoraF], ['Profesor', '=', $idProf], ['Dia', '=', $Dia]])
+                        ->Where([['HoraI', '<=', $HoraI], ['HoraF', '>=', $HoraI], ['Profesor', '=', $idProf], ['Dia', '=', $Dia], ['programas_educativos.Facultad', '=', $idFac]])
+                        ->orWhere([['HoraI', '<=', $HoraF], ['HoraF', '>=', $HoraF], ['Profesor', '=', $idProf], ['Dia', '=', $Dia], ['programas_educativos.Facultad', '=', $idFac]])
+                        ->orWhere([['HoraI', '>=', $HoraI], ['HoraF', '<=', $HoraF], ['Profesor', '=', $idProf], ['Dia', '=', $Dia], ['programas_educativos.Facultad', '=', $idFac]])
                         ->get();
         return $materias;
     }
 
-    public function ValidarTraslapeProfesorGuardado($request){
+    public function ValidarTraslapeProfesorGuardado($request, $idFac){
         $HoraI = $request->get('HoraI');
         $Duracion = $request->get('Duracion');
         $HoraF = intval($HoraI)+intval($Duracion)-1;
@@ -153,15 +155,16 @@ class Materias extends Model
         
 
         $materias = Materias::join('materias_horarios', 'materias_horarios.Materia', '=', 'materias.id')
+                        ->join('programas_educativos', 'materias.ProgEducativo', '=', 'programas_educativos.id')
                         ->select('materias.id')
-                        ->Where([['HoraI', '<=', $HoraI], ['HoraF', '>=', $HoraI], ['Profesor', '=', $idProf], ['Dia', '=', $Dia], ['materias_horarios.id', '<>', $idClase]])
-                        ->orWhere([['HoraI', '<=', $HoraF], ['HoraF', '>=', $HoraF], ['Profesor', '=', $idProf], ['Dia', '=', $Dia], ['materias_horarios.id', '<>', $idClase]])
-                        ->orWhere([['HoraI', '>=', $HoraI], ['HoraF', '<=', $HoraF], ['Profesor', '=', $idProf], ['Dia', '=', $Dia], ['materias_horarios.id', '<>', $idClase]])
+                        ->Where([['HoraI', '<=', $HoraI], ['HoraF', '>=', $HoraI], ['Profesor', '=', $idProf], ['Dia', '=', $Dia], ['materias_horarios.id', '<>', $idClase], ['programas_educativos.Facultad', '=', $idFac]])
+                        ->orWhere([['HoraI', '<=', $HoraF], ['HoraF', '>=', $HoraF], ['Profesor', '=', $idProf], ['Dia', '=', $Dia], ['materias_horarios.id', '<>', $idClase], ['programas_educativos.Facultad', '=', $idFac]])
+                        ->orWhere([['HoraI', '>=', $HoraI], ['HoraF', '<=', $HoraF], ['Profesor', '=', $idProf], ['Dia', '=', $Dia], ['materias_horarios.id', '<>', $idClase], ['programas_educativos.Facultad', '=', $idFac]])
                         ->get();
         return $materias;
     }
     
-    public function ValidarTraslapeAulas($request){
+    public function ValidarTraslapeAulas($request, $idFac){
         $HoraI = $request->get('HoraI');
         $Duracion = $request->get('Duracion');
         $HoraF = intval($HoraI)+intval($Duracion)-1;
@@ -172,15 +175,16 @@ class Materias extends Model
         
 
         $materias = Materias::join('materias_horarios', 'materias_horarios.Materia', '=', 'materias.id')
+                        ->join('programas_educativos', 'materias.ProgEducativo', '=', 'programas_educativos.id')
                         ->select('materias.id')
-                        ->Where([['HoraI', '<=', $HoraI], ['HoraF', '>=', $HoraI], ['Aula', '=', $aula], ['Dia', '=', $Dia]])
-                        ->orWhere([['HoraI', '<=', $HoraF], ['HoraF', '>=', $HoraF], ['Aula', '=', $aula], ['Dia', '=', $Dia]])
-                        ->orWhere([['HoraI', '>=', $HoraI], ['HoraF', '<=', $HoraF], ['Aula', '=', $aula], ['Dia', '=', $Dia]])
+                        ->Where([['HoraI', '<=', $HoraI], ['HoraF', '>=', $HoraI], ['Aula', '=', $aula], ['Dia', '=', $Dia], ['programas_educativos.Facultad', '=', $idFac]])
+                        ->orWhere([['HoraI', '<=', $HoraF], ['HoraF', '>=', $HoraF], ['Aula', '=', $aula], ['Dia', '=', $Dia], ['programas_educativos.Facultad', '=', $idFac]])
+                        ->orWhere([['HoraI', '>=', $HoraI], ['HoraF', '<=', $HoraF], ['Aula', '=', $aula], ['Dia', '=', $Dia], ['programas_educativos.Facultad', '=', $idFac]])
                         ->get();
         return $materias;
     }
 
-    public function ValidarTraslapeAulasGuardado($request){
+    public function ValidarTraslapeAulasGuardado($request, $idFac){
         $HoraI = $request->get('HoraI');
         $Duracion = $request->get('Duracion');
         $HoraF = intval($HoraI)+intval($Duracion)-1;
@@ -192,10 +196,11 @@ class Materias extends Model
         
 
         $materias = Materias::join('materias_horarios', 'materias_horarios.Materia', '=', 'materias.id')
+                        ->join('programas_educativos', 'materias.ProgEducativo', '=', 'programas_educativos.id')
                         ->select('materias.id')
-                        ->Where([['HoraI', '<=', $HoraI], ['HoraF', '>=', $HoraI], ['Aula', '=', $aula], ['Dia', '=', $Dia], ['materias_horarios.id', '<>', $idClase]])
-                        ->orWhere([['HoraI', '<=', $HoraF], ['HoraF', '>=', $HoraF], ['Aula', '=', $aula], ['Dia', '=', $Dia], ['materias_horarios.id', '<>', $idClase]])
-                        ->orWhere([['HoraI', '>=', $HoraI], ['HoraF', '<=', $HoraF], ['Aula', '=', $aula], ['Dia', '=', $Dia], ['materias_horarios.id', '<>', $idClase]])
+                        ->Where([['HoraI', '<=', $HoraI], ['HoraF', '>=', $HoraI], ['Aula', '=', $aula], ['Dia', '=', $Dia], ['materias_horarios.id', '<>', $idClase], ['programas_educativos.Facultad', '=', $idFac]])
+                        ->orWhere([['HoraI', '<=', $HoraF], ['HoraF', '>=', $HoraF], ['Aula', '=', $aula], ['Dia', '=', $Dia], ['materias_horarios.id', '<>', $idClase], ['programas_educativos.Facultad', '=', $idFac]])
+                        ->orWhere([['HoraI', '>=', $HoraI], ['HoraF', '<=', $HoraF], ['Aula', '=', $aula], ['Dia', '=', $Dia], ['materias_horarios.id', '<>', $idClase], ['programas_educativos.Facultad', '=', $idFac]])
                         ->get();
         return $materias;
     }

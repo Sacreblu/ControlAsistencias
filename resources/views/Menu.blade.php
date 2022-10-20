@@ -90,8 +90,8 @@
     }
 
     function redireccionar(ruta){
-        document.location.replace(ruta);
-        //document.location.replace('/controlasistencia'+ruta);
+        //document.location.replace(ruta);
+        document.location.replace('/controlasistencia'+ruta);
     }
 </script>
 </html>
